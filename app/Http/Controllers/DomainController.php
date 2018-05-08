@@ -15,8 +15,8 @@ class DomainController extends Controller {
         return response()->json(Domain::find($id));
     }
 
-    public function showLabels($id) {
-        return response()->json(Domain::find($id)->labels);
+    public function showEvents($id) {
+        return response()->json(Domain::find($id)->events);
     }
 
     public function create(Request $request) {

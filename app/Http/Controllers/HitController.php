@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Label;
+use App\Event;
 use App\Hit;
 use Illuminate\Http\Request;
 
@@ -10,7 +10,7 @@ class HitController extends Controller {
 
     public function updateOrCreate($domain_id, $label, Request $request) {
 
-        $label = Label::firstOrCreate(
+        $label = Event::firstOrCreate(
             ['domain_id' => $domain_id, 'name' => $label]
         );
 

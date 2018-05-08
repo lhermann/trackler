@@ -23,10 +23,10 @@ class Domain extends Model {
     protected $hidden = [];
 
     /**
-     * Get the labels of this domain.
+     * Get the events of this domain.
      */
-    public function labels()
+    public function events()
     {
-        return $this->hasMany('App\Label');
+        return $this->hasMany('App\Event');
     }
 }

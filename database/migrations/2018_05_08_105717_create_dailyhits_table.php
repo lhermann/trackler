@@ -15,7 +15,7 @@ class CreateDailyhitsTable extends Migration
     {
         Schema::create('hits', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('count');
+            $table->integer('count')->unsigned();
             $table->string('timeframe', 20);
             $table->date('date');
             $table->unsignedInteger('label_id');

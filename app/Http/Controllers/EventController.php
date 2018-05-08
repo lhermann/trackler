@@ -2,25 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Label;
+use App\Event;
 use Illuminate\Http\Request;
 
-class LabelController extends Controller {
+class EventController extends Controller {
 
     public function showAll() {
-        return response()->json(Label::all());
+        return response()->json(Event::all());
     }
 
     public function showOneById($id) {
-        return response()->json(Label::find($id));
+        return response()->json(Event::find($id));
     }
 
     public function showOneByName($name) {
-        return response()->json(Label::where('name', $name)->first());
+        return response()->json(Event::where('name', $name)->first());
     }
 
     public function create(Request $request, $domain_id) {
-        $label = new Label;
+        $label = new Event;
         $label->name = $request->name;
         $label->domain_id = $domain_id;
         $label->save();
@@ -29,7 +29,7 @@ class LabelController extends Controller {
     }
 
     public function update($id, Request $request) {
-        $label = Label::findOrFail($id);
+        $label = Event::findOrFail($id);
         $label->name = $request->name;
         $label->save();
 
@@ -37,7 +37,7 @@ class LabelController extends Controller {
     }
 
     public function delete($id) {
-        Label::findOrFail($id)->delete();
+        Event::findOrFail($id)->delete();
         return response()->json((object)['message' => 'Deleted Successfully'], 200);
     }
 }

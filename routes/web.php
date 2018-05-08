@@ -16,7 +16,7 @@ $router->get('/', function () use ($router) {
 });
 
 $router->get(
-    '/hit/domains/{domain_id:[0-9]+}[/labels/{label:[A-Za-z]+}]',
+    '/hit/domains/{domain_id:[0-9]+}',
     ['uses' => 'HitController@updateOrCreate']
 );
 
@@ -25,17 +25,19 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     $router->get('domains',  ['uses' => 'DomainController@showAll']);
     $router->get('domains/{id}', ['uses' => 'DomainController@showOne']);
-    $router->get('domains/{id}/labels',  ['uses' => 'DomainController@showLabels']);
-    $router->get('labels/{id:[0-9]+}', ['uses' => 'LabelController@showOneById']);
-    $router->get('labels/{name:[A-Za-z]+}', ['uses' => 'LabelController@showOneByName']);
+    $router->get('domains/{id}/events',  ['uses' => 'DomainController@showEvents']);
+    $router->get('events/{id:[0-9]+}', ['uses' => 'EventController@showOne']);
+
+    $router->get('events/{name:[A-Za-z]+}', ['uses' => 'HitController@showByEvent']);
+    $router->get('identifiers/{id}', ['uses' => 'HitController@showByIdentifier']);
 
     $router->post('domains', ['uses' => 'DomainController@create']);
-    $router->post('domains/{id}/labels',  ['uses' => 'LabelController@create']);
+    $router->post('domains/{id}/events',  ['uses' => 'EventController@create']);
 
     $router->delete('domains/{id}', ['uses' => 'DomainController@delete']);
-    $router->delete('labels/{id}', ['uses' => 'LabelController@delete']);
+    $router->delete('events/{id}', ['uses' => 'EventController@delete']);
 
     $router->put('domains/{id}', ['uses' => 'DomainController@update']);
-    $router->put('labels/{id}', ['uses' => 'LabelController@update']);
+    $router->put('events/{id}', ['uses' => 'EventController@update']);
 
 });

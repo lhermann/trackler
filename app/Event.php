@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Label extends Model {
+class Event extends Model {
 
-    // assumes table with name `labels`
+    // assumes table with name `events`
     // assumes PK with name `id`
     // assumes timestamps `created_at` and `updated_at`
 

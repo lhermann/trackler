@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Hit extends Model {
 
-    // assumes table with name `labels`
+    // assumes table with name `hits`
     // assumes PK with name `id`
     // assumes timestamps `created_at` and `updated_at`
 
@@ -16,7 +16,7 @@ class Hit extends Model {
      * @var array
      */
     protected $fillable = [
-        'label_id'
+        'event_id'
     ];
 
     /**
@@ -27,10 +27,10 @@ class Hit extends Model {
     protected $hidden = [];
 
     /**
-     * Get the label that owns this hit.
+     * Get the event that owns this hit.
      */
-    public function label()
+    public function event()
     {
-        return $this->belongsTo('App\Label');
+        return $this->belongsTo('App\Event');
     }
 }
