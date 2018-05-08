@@ -17,7 +17,7 @@ $router->get('/', function () use ($router) {
 
 $router->get(
     '/hit/domains/{domain_id:[0-9]+}',
-    ['uses' => 'HitController@updateOrCreate']
+    ['uses' => 'HitController@hit']
 );
 
 $router->group(['prefix' => 'api'], function () use ($router) {
@@ -39,5 +39,6 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     $router->put('domains/{id}', ['uses' => 'DomainController@update']);
     $router->put('events/{id}', ['uses' => 'EventController@update']);
+    $router->put('domains/{id}/hit',  ['uses' => 'DomainController@hit']);
 
 });

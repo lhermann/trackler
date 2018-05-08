@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 class DomainController extends Controller {
 
+    use UpdateOrCreateHit;
+
     public function showAll() {
         return response()->json(Domain::all());
     }
@@ -35,5 +37,10 @@ class DomainController extends Controller {
     public function delete($id) {
         Domain::findOrFail($id)->delete();
         return response()->json((object)['message' => 'Deleted Successfully'], 200);
+    }
+
+    public function hit($id, Request $request) {
+        $hit = self::updateOrCreate($id, $request);
+        return response()->json($hit);
     }
 }
