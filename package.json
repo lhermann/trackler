@@ -1,0 +1,16 @@
+{
+  "name": "trackler",
+  "version": "1.0.0",
+  "description": "A simple GDPR-conform non-coockie pageview tracker",
+  "main": "public/index.php",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "npm run dev",
+    "dev": "php -S localhost:8082 -t public",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lukas Hermann <lukher6@web.de>",
+  "license": "ISC"
+}
