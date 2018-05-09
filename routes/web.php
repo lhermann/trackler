@@ -16,8 +16,8 @@ $router->get('/', function () use ($router) {
 });
 
 $router->get(
-    '/hit/domains/{domain_id:[0-9]+}',
-    ['uses' => 'HitController@hit']
+    '/hit/domains/{domain_id:[0-9]+}[/{event}]',
+    ['uses' => 'HitController@silentHit']
 );
 
 $router->group(['prefix' => 'api'], function () use ($router) {
@@ -28,8 +28,10 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('domains/{id}/events',  ['uses' => 'DomainController@showEvents']);
     $router->get('events/{id:[0-9]+}', ['uses' => 'EventController@showOne']);
 
-    $router->get('events/{name:[A-Za-z]+}', ['uses' => 'HitController@showByEvent']);
-    $router->get('identifiers/{id}', ['uses' => 'HitController@showByIdentifier']);
+    $router->get('domains/{domain_id}/last/{amount}/{timeframe}',
+        ['uses' => 'HitController@showByTimeframe']);
+    $router->get('domains/{domain_id}/events/{event}/last/{amount}/{timeframe}',
+        ['uses' => 'HitController@showByEventAndTimeframe']);
 
     $router->post('domains', ['uses' => 'DomainController@create']);
     $router->post('domains/{id}/events',  ['uses' => 'EventController@create']);
@@ -39,6 +41,6 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     $router->put('domains/{id}', ['uses' => 'DomainController@update']);
     $router->put('events/{id}', ['uses' => 'EventController@update']);
-    $router->put('domains/{id}/hit',  ['uses' => 'DomainController@hit']);
+    $router->put('domains/{id}/hit[/{event}]',  ['uses' => 'HitController@hit']);
 
 });
